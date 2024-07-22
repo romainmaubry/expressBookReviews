@@ -47,7 +47,14 @@ const filtered_books=Object.values(books).filter(compareISBN)
 res.send(JSON.stringify({filtered_books},null,4))
   //return res.status(300).json({message: "Yet to be implemented"});
  });
-  
+
+// TASK11:
+ public_users.get('/task11/:isbn',function (req, res) {
+   new Promise((resolve, reject) => {
+     resolve(res.send(JSON.stringify(books[req.params.isbn], null, 2)));
+   }).then(() => console.log("Task 11 Promise complete"));
+ });
+
 // Get book details based on author
 public_users.get('/author/:author',function (req, res) {
   //Write your code here
