@@ -28,6 +28,13 @@ public_users.get('/',function (req, res) {
   //return res.status(300).json({message: "Yet to be implemented"});
 });
 
+// TASK10: 
+ public_users.get('/task10',function (req, res) {
+   new Promise((resolve, reject) => {
+     resolve(res.send(JSON.stringify(books, null, 2)));
+   }).then(() => console.log("Task 10 Promise complete"));
+ });
+
 // Get book details based on ISBN
 public_users.get('/isbn/:isbn',function (req, res) {
   //Write your code here
@@ -53,6 +60,20 @@ res.send(JSON.stringify({filtered_authors},null,4))
   //return res.status(300).json({message: "Yet to be implemented"});
 });
 
+// TASK12:
+ public_users.get('/task12/:author',function (req, res) {
+   new Promise((resolve, reject) => {
+     const author = req.params.author;
+     let blist = [];
+     for (b in books) {
+       if (books[b].author === author){
+         blist.push(books[b]);
+     }
+   }
+     resolve(res.send(JSON.stringify(blist, null, 2)));
+   }).then(() => console.log("Task 12 Promise complete"));
+ });
+
 // Get all books based on title
 public_users.get('/title/:title',function (req, res) {
   //Write your code here
@@ -64,6 +85,17 @@ public_users.get('/title/:title',function (req, res) {
   res.send(JSON.stringify({filtered_titles},null,4))
   //return res.status(300).json({message: "Yet to be implemented"});
 });
+
+// TASK13: 
+ public_users.get('/task13/:title',function (req, res) {
+   new Promise((resolve, reject) => {
+     for (t in books) {
+       if (books[t].title === req.params.title){
+         resolve(res.send(JSON.stringify(books[t], null, 2)));
+       }
+     } 
+   }).then(() => console.log("Task 13 Promise complete"));
+ });
 
 //  Get book review
 public_users.get('/review/:reviews',function (req, res) {
